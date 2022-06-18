@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Molotok34.Models.Services>
+@using Molotok34.Models
+@{
+    var Services = fsHostEntities.GetContext().Services.ToList();
+    var Categoris = fsHostEntities.GetContext().Categoris.ToList();
+
+}
+
+
+<section class="product-section clearfix">
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-lg-7 col-md-8 ml-auto mr-auto">
+                <!-- section title -->
+                <div class="section-title title-style-center_text style2">
+                    <div class="title-header">
+                        <h2 class="title mt-4">Каталог товаров</h2>
+
+
+                        <input class="mt-4" type="text" id="searchProduct" onkeyup="searchFunction()" placeholder="Поиск.." title="Поиск...">
+
+                    </div>
+                </div><!-- section title end -->
+            </div>
+        </div><!-- row end -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ttm-tabs tabs-for-Services" data-effect="fadeIn">
+                    <ul class="tabs clearfix">
+                        @foreach (var item in Categoris)
+                        {
+                            <li class="tab"><a href="#"> @Html.DisplayFor(modelItem => item.Name)</a></li>
+                        }
+                    </ul>
+                    <div class="content-tab">
+                        <!-- content-inner -->
+
+                        @{
+                            var countProducts = 0;
+                        }
+
+
+                        @foreach (var category in Categoris)
+                        {
+
+                            var currentProducts = Services.Where(p => p.IdCategory == category.Id).ToList();
+
+
+                            <div class="content-inner">
+                                <div class="Services row">
+                                    <!-- product -->
+
+                                    @foreach (var product in currentProducts)
+                                    {
+                                        <div id="@("product" + countProducts)" class="product col-md-3 col-sm-6 col-xs-12">
+                                            <div class="product-box">
+                                                <div class="product-content-box">
+                                                    <div class="card" style="width: 18rem;">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Card title</h5>
+                                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                        </div>
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item">@Html.DisplayFor(modelItem => product.Name)</li>
+                                                            <li class="list-group-item">A second item</li>
+                                                            <li class="list-group-item">A third item</li>
+                                                        </ul>
+                                                        <div class="card-body">
+                                                            <a href="#" class="card-link">Card link</a>
+                                                            <a href="#" class="card-link">Another link</a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+                                        {
+                                            countProducts++;
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</section>
+<!-- product-section end-->
+
+<script type="text/javascript">
+    function searchFunction()
+    {
+        var input, countProducts, productName, i;
+        input = document.getElementById('searchProduct').value;
+
+        var currentProducts = @countProducts;
+        countProducts = currentProducts;
+
+
+        for (i = 0; i < countProducts; i++)
+        {
+            productName = document.querySelector(".productName" + i).textContent;
+
+            if (productName.toUpperCase().indexOf(input.toUpperCase()) !== -1)
+            {
+                document.getElementById('product' + i).style.display = "";
+            }
+            else
+            {
+                document.getElementById('product' + i).style.display = "none";
+            }
+        }
+    }
+</script>

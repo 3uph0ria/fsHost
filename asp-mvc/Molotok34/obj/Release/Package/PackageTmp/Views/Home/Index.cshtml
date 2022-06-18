@@ -1,0 +1,236 @@
+﻿@model IEnumerable<Molotok34.Models.Services>
+@using Molotok34.Models
+@{
+    var Services = fsHostEntities.GetContext().Services.ToList();
+    var Categoris = fsHostEntities.GetContext().Categoris.ToList();
+
+    @Html.Partial("~/Views/Shared/_Header.cshtml")
+    @Html.Partial("~/Views/Shared/_NavTop.cshtml")
+
+    int i = 0;
+}
+
+
+<section class="product-section clearfix">
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-lg-7 col-md-8 ml-auto mr-auto">
+                <!-- section title -->
+                <div class="section-title title-style-center_text style2">
+                    <div class="title-header">
+                        <h1 class="mt-4 text-center">Web-хостинг для сайтов</h1>
+                        <p class="text-center">
+                            Оптимальные соотношение цены и ресурсов.
+                            Подойдёт для размещения персональных страниц, блогов и бизнес⁠-⁠сайтов компаний
+                        </p>
+
+                    </div>
+                </div><!-- section title end -->
+            </div>
+        </div><!-- row end -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ttm-tabs tabs-for-Services" data-effect="fadeIn">
+                    <ul class="tabs clearfix" style="display:flex;">
+                        @foreach (var item in Categoris)
+                        {
+                            if (i == 0)
+                            {
+                                <li class="tab active btn btn-primary m-2"><a href="#" style="background-color: none; color: #FFF "> @Html.DisplayFor(modelItem => item.Name)</a></li>
+                            }
+                            else
+                            {
+                                <li class="tab btn btn-primary m-2"><a href="#" style="background-color: none; color:#FFF"> @Html.DisplayFor(modelItem => item.Name)</a></li>
+                            }
+
+                            i++;
+                        }
+                    </ul>
+                    <div class="content-tab">
+                        <!-- content-inner -->
+
+                        @{
+                            var countProducts = 0;
+                        }
+
+
+                        @foreach (var category in Categoris)
+                        {
+                            var currentProducts = Services.Where(p => p.IdCategory == category.Id).ToList();
+
+
+                            if (countProducts == 0)
+                            {
+                                <div class=" content-inner active">
+
+                                    <div class="Services row">
+                                        <!-- product -->
+
+                                        @foreach (var product in currentProducts)
+                                        {
+                                            <div id="@("product" + countProducts)" class="card" style="width: 18rem;margin:20px">
+                                                <div class="card-body">
+                                                    <p>@Html.DisplayFor(modelItem => product.Name)</p>
+                                                    <h5 class="card-title">@Html.DisplayFor(modelItem => product.Cost)/мес</h5>
+                                                    <p>Вы можете сэкономить до 45% выбрав больший срок заказа</p>
+                                                </div>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"><b>@Html.DisplayFor(modelItem => product.CountSites)</b> сайтов</li>
+                                                    <li class="list-group-item"><b>@Html.DisplayFor(modelItem => product.MemoryGB)</b> ГБ на SSD диске</li>
+                                                    <li class="list-group-item">2.2 ГГц процессор</li>
+                                                    <li class="list-group-item">
+                                                        Панель ISPmanager
+                                                    </li>
+                                                </ul>
+                                                <div class="card-body">
+                                                    <a href="/Catalog/Product/@Html.DisplayFor(modelItem => product.Id)" class="btn btn-primary">Заказать</a>
+                                                </div>
+                                            </div>
+                                            {
+                                                countProducts++;
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class=" content-inner" style="display: none;">
+
+                                    <div class="Services row">
+                                        <!-- product -->
+
+                                        @foreach (var product in currentProducts)
+                                        {
+                                            <div id="@("product" + countProducts)" class="card" style="width: 18rem;margin:20px">
+                                                <div class="card-body">
+                                                    <p>@Html.DisplayFor(modelItem => product.Name)</p>
+                                                    <h5 class="card-title">@Html.DisplayFor(modelItem => product.Cost)/мес</h5>
+                                                    <p>Вы можете сэкономить до 45% выбрав больший срок заказа</p>
+                                                </div>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"><b>@Html.DisplayFor(modelItem => product.CountSites)</b> сайтов</li>
+                                                    <li class="list-group-item"><b>@Html.DisplayFor(modelItem => product.MemoryGB)</b> ГБ на SSD диске</li>
+                                                    <li class="list-group-item">2.2 ГГц процессор</li>
+                                                    <li class="list-group-item">
+                                                        Панель ISPmanager
+                                                    </li>
+                                                </ul>
+                                                <div class="card-body">
+                                                    <a href="#" class="btn btn-primary">Заказать</a>
+                                                </div>
+                                            </div>
+                                            {
+                                                countProducts++;
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section style="background-color: #f0f0f0;">
+    <div class="container">
+        <h1 class="pt-4">Бесплатно на&nbsp;всех тарифах</h1>
+        <div class="row">
+            <div class="col-lg-6">
+                <ul>
+                    <li style="margin: 20px">SSL⁠-⁠сертификат от&nbsp;GlobalSign или&nbsp;Let’s&nbsp;Encrypt</li>
+                    <li style="margin: 20px">Защита от&nbsp;DDoS на&nbsp;уровнях L3/L4</li>
+                    <li style="margin: 20px">Хранение 30 резервных копий</li>
+                    <li style="margin: 20px">Почта для&nbsp;доменов, ∞ ящиков</li>
+                    <li style="margin: 20px">Панель управления ISPmanager</li>
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <ul>
+                    <li style="margin: 20px">DNS⁠-⁠серверы</li>
+                    <li style="margin: 20px">Безлимитный трафик</li>
+                    <li style="margin: 20px">Антивирусная проверка</li>
+                    <li style="margin: 20px">Доступ по&nbsp;протоколу FTP/SSH</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h1 class="mt-4">Удобно управлять и администри­ровать</h1>
+        <div class="row mb-4">
+            <div class="col-lg-4">
+                <div class="row">
+                    <h5 class="mt-4">
+                        Панель управления
+                        ISPmanager
+                    </h5>
+                </div>
+                <div class="row">
+                    <p class="mt-3">
+                        Предоставляем бесплатно одну из лучших панелей управления ISPmanager с файловым менеджером SPRUT.io, также доступны тарифы с cPanel и Plesk
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <h5 class="mt-4">
+                        FTP/SFTP и безопасный
+                        SSH⁠-⁠доступ
+                    </h5>
+                </div>
+                <div class="row">
+                    <p class="mt-3">
+                        Неограниченное количество FTP⁠-⁠аккаунтов и SSH/SFTP⁠-⁠доступ. Добавление SSH⁠-⁠ключей через панель управления
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <h5 class="mt-4">
+                        Функциональный
+                        личный кабинет
+                    </h5>
+                </div>
+                <div class="row">
+                    <p class="mt-3">
+                        Управляйте хостингом, доменами, SSL⁠-⁠сертификатами прямо в личном кабинете. Работайте с услугами ваших заказчиков через частичное управление
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- product-section end-->
+
+<script type="text/javascript">
+    function searchFunction()
+    {
+        var input, countProducts, productName, i;
+        input = document.getElementById('searchProduct').value;
+
+        var currentProducts = @countProducts;
+        countProducts = currentProducts;
+
+
+        for (i = 0; i < countProducts; i++)
+        {
+            productName = document.querySelector(".productName" + i).textContent;
+
+            if (productName.toUpperCase().indexOf(input.toUpperCase()) !== -1)
+            {
+                document.getElementById('product' + i).style.display = "";
+            }
+            else
+            {
+                document.getElementById('product' + i).style.display = "none";
+            }
+        }
+    }
+</script>
+
+@Html.Partial("~/Views/Shared/_Footer.cshtml")
