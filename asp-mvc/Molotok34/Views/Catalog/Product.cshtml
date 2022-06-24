@@ -36,12 +36,16 @@
                                         @Html.AntiForgeryToken()
 
                                         <p>Введите данные:</p>
-                                        
+
                                         <div class="md-form mt-2">
-                                            <input class="mt-4" type="text" id="Phone" name="Phone" maxlength="50" placeholder="Введите Ваш телефон.." required="">
+                                            <input class="mt-4" type="tel" name="Phone" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" id="Phone" maxlength="18" placeholder="Введите Ваш телефон.." required="">
                                         </div>
                                         <div class="md-form mt-4">
-                                            <input class="mt-4" type="text" name="Fullname" id="Fullname" maxlength="50" placeholder="Введите Ваше ФИО.." required="">
+                                            <input class="mt-4" ttype="text" pattern="[А-Яа-я]*?\s[А-Яа-я]*?\s[А-Яа-я]*" name="Fullname" id="Fullname" maxlength="50" placeholder="Введите Ваше ФИО.." required="">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" required>
+                                            Вы соглашаетесь с <a href="/Content/oferta.docx" target="_blank">Пользовательским соглашением</a>
                                         </div>
                                         <div class="md-form mt-4">
                                             <button type="submit" class=" mt-4 btn btn-primary">Заказать</button>

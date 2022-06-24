@@ -27,7 +27,7 @@ namespace fsHost.Pages
 
             if (CurrentUser.AccessClients == false) BtnClients.Visibility = Visibility.Hidden;
             if (CurrentUser.AccessClientsServicrs == false) BtnClientService.Visibility = Visibility.Hidden;
-            //if (CurrentUser.AccessReport == false) BtnReports.Visibility = Visibility.Hidden;
+            if (CurrentUser.AccessReport == false) BtnReports.Visibility = Visibility.Hidden;
             if (CurrentUser.AccessServices == false) BtnServices.Visibility = Visibility.Hidden;
 
 
@@ -35,7 +35,7 @@ namespace fsHost.Pages
             NavManager.BtClients = BtnClients;
             NavManager.BtnServices = BtnServices;
             NavManager.BtnClientService = BtnClientService;
-            //NavManager.BtnReports = BtnReports;
+            NavManager.BtnReports = BtnReports;
 
             AccountFrame.Navigate(new PageServices(NavManager.BtnServices.Content + ""));
         }
@@ -64,6 +64,11 @@ namespace fsHost.Pages
         private void BtnCategorys_Click(object sender, RoutedEventArgs e)
         {
             AccountFrame.Navigate(new PageCategorys());
+        }
+
+        private void BtnReports_Click(object sender, RoutedEventArgs e)
+        {
+            AccountFrame.Navigate(new PageReports("Отчеты"));
         }
     }
 }

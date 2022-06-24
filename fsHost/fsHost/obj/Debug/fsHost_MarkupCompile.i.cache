@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Git\fsHost\tests\fsHost\obj\Debug\
+D:\WebGit\fsHost\fsHost\fsHost\obj\Debug\
 fsHost
 none
 false
 DEBUG;TRACE
-D:\Git\fsHost\tests\fsHost\App.xaml
+D:\WebGit\fsHost\fsHost\fsHost\App.xaml
 12942710250
 2-1890902742
 301373521099
-25650546039
+28442240349
 MainWindow.xaml;Pages\Account.xaml;Pages\PageAddEditCategory.xaml;Pages\PageAddEditClient.xaml;Pages\PageAddEditClientService.xaml;Pages\PageAddEditService.xaml;Pages\PageCategorys.xaml;Pages\PageClients.xaml;Pages\PageClientService.xaml;Pages\PageReports.xaml;Pages\PageServices.xaml;Pages\SignIn.xaml;
 
-False
+True
 

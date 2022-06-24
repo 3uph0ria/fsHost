@@ -21,7 +21,7 @@
                                     <h1 class="product_title entry-title mt-4">Хостинг</h1>
                                     <div class="" style="display:flex;align-items:center">
                                         <h6 class="m-2">@Html.DisplayFor(model => model.Name)</h6>
-                                        <p class="m-2">Диск: <h6 class="m-2">@Html.DisplayFor(model => model.MemoryGB)</h6></p>
+                                        <p class="m-2">Диск: <h6 class="m-2">@Html.DisplayFor(model => model.MemoryGB)ГБ</h6></p>
                                         <p class="m-2">Сайтов: <h6 class="m-2">@Html.DisplayFor(model => model.CountSites)</h6></p>
                                         <p class="m-2">БД: <h6 class="m-2">∞</h6></p>
                                     </div>
@@ -36,12 +36,16 @@
                                         @Html.AntiForgeryToken()
 
                                         <p>Введите данные:</p>
-                                        
+
                                         <div class="md-form mt-2">
-                                            <input class="mt-4" type="text" id="Phone" name="Phone" maxlength="50" placeholder="Введите Ваш телефон.." required="">
+                                            <input class="mt-4" type="tel" name="Phone" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" id="Phone" maxlength="18" placeholder="Введите Ваш телефон.." required="">
                                         </div>
                                         <div class="md-form mt-4">
-                                            <input class="mt-4" type="text" name="Fullname" id="Fullname" maxlength="50" placeholder="Введите Ваше ФИО.." required="">
+                                            <input class="mt-4" ttype="text" pattern="[А-Яа-я]*?\s[А-Яа-я]*?\s[А-Яа-я]*" name="Fullname" id="Fullname" maxlength="50" placeholder="Введите Ваше ФИО.." required="">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" required>
+                                            Вы соглашаетесь с <a href="/Content/oferta.docx" target="_blank">Пользовательским соглашением</a>
                                         </div>
                                         <div class="md-form mt-4">
                                             <button type="submit" class=" mt-4 btn btn-primary">Заказать</button>
@@ -50,7 +54,7 @@
 
                                     @if (TempData["notice"] != null)
                                     {
-                                        <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
+                                        <div class="alert mt-4 alert-dismissible fade show w-100" role="alert" style="border: 1px solid #000">
                                             <p class="m-0">@TempData["notice"]</p>
                                         </div>
 

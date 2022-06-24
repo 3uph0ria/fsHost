@@ -70,6 +70,15 @@
                         Name="BtnCategorys"
                         Click="BtnCategorys_Click"
                         Content="Категории" />
+
+                    <Button
+                        Margin="4"
+                        Foreground="#fff"
+                        HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Name="BtnReports"
+                        Click="BtnReports_Click"
+                        Content="Отчеты" />
                     <Button
                         Margin="4"
                         Foreground="#fff"
